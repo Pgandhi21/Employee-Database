@@ -17,12 +17,12 @@ VALUES  ('Sales Lead', 100000, 4),
         ('Customer Services', 50000, 5);
 
 INSERT INTO employee(first_name, last_name, role_id, manager_name)
-VALUES  ('John', 'Doe', 1, ''),
+VALUES  ('John', 'Doe', 1, NULL),
         ('Mike', 'Chan', 2, 'John Doe'),
-        ('Ashley', 'Rodriguez', 3, ''),
+        ('Ashley', 'Rodriguez', 3, NULL),
         ('Kevin', 'Tupik', 4, 'Ashley Rodriguez'),
-        ('Kunal', 'Singh', 5, ''),
+        ('Kunal', 'Singh', 5, NULL),
         ('Malia', 'Brown', 6, 'Kunal Singh'),
-        ('Sarah', 'Lourd', 7, ''),
+        ('Sarah', 'Lourd', 7, NULL),
         ('Tom', 'Allen', 8, 'Sarah Lourd'),
         ('Jane', 'Austin', 9, 'John Doe');
