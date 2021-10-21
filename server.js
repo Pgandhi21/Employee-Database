@@ -45,8 +45,8 @@ function questions() {
                 return addEmployee();
             case 'Delete an employee':
                 return deleteEmployee();
-            // case 'Update an employee':
-                // return 
+            case 'Update an employee':
+                return updateEmployee();
             case 'Quit':
                 return dbConnect.end();
         }
@@ -194,8 +194,6 @@ function addEmployee() {
         },
     ])
     .then (function(response) {
-        
-        
 
         var addEmployeeQuery = "INSERT INTO employee(first_name, last_name, role_id, manager_name) VALUES (?,?,?,?)"
 
@@ -208,6 +206,94 @@ function addEmployee() {
         })
     })
 } 
+
+function updateEmployee() {
+    
+    var roleOptionsID = [];
+
+    dbConnect.query("SELECT * FROM roles", function(err, data) {
+        if (err) throw err;
+
+        for (i = 0; i < data.length; i++) {
+            var roleDataID = {
+                name: data[i].id + " - " +data[i].title,
+                value: {
+                    roleID: data[i].id,
+                    roleTitle: data[i].title,
+                }
+            };
+            roleOptionsID.push(roleDataID);
+        }
+    });
+
+    
+    inquirer.prompt ([
+        {
+            type: 'list',
+            name: 'title',
+            message: "What is the role of the employee?",
+            choices: roleOptionsID,
+        },
+    ])
+    .then (function(response) {
+
+        console.log(response);
+    })
+} 
+
+// function updateEmployee() {
+//     var employeeOptions = [];
+
+//     const queryViewEmployee = "SELECT employee.first_name AS first_name, employee.last_name AS last_name, roles.title AS title, department.dept_name AS dept_name, employee.manager_name AS manager_name FROM employee INNER JOIN roles ON employee.role_id = roles.id INNER JOIN department ON roles.dept_id = department.id";
+
+//     dbConnect.query(queryViewEmployee, function(err, data) {
+//         if (err) throw err;
+
+//         for (i = 0; i < data.length; i++) {
+//             var employeeData = {
+//                 name: data[i].first_name + " - " + data[i].last_name + " - " + data[i].title + " - " + data[i].dept_name + " - " + data[i].manager_name,
+//                 value: {
+//                     roleID: data[i].id,
+//                     roleTitle: data[i].title,
+//                 }
+//             }
+//             employeeOptions.push(employeeData);
+//         }
+//     });
+
+//     var roleOption = [];
+
+//     dbConnect.query("SELECT title, id FROM roles", function(err, data) {
+//         if (err) throw err;
+
+//         for (i = 0; i < data.length; i++) {
+//             var roleData = {
+//                 name: data[i].id + " - " +data[i].title,
+//                 value: {
+//                     roleID: data[i].id,
+//                     roleTitle: data[i].title,
+//                 }
+//             }
+//             console.log(roleData, 'line 243');
+//             roleOption.push(roleData);
+//         }
+//     });
+//     console.log(roleOption, 'line 247');
+    
+//     inquirer.prompt ([
+//         {
+//             type: 'list',
+//             name: 'title',
+//             message: "What is the role of the employee?",
+//             choices: roleOption
+//         },
+//     ])
+//     .then (function(response) {
+
+//         console.log(response);
+//         questions();
+//     })
+// } 
 
 function deleteEmployee() {
     

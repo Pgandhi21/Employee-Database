@@ -1,6 +1,8 @@
 # Employee-Database
 
 # Employee Tracker
+video link: https://drive.google.com/file/d/19h_E-MrQGZDHA8pFXpugkgEneg6jzNya/view
+
 
 ## Your Task
 
